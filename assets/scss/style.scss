@@ -1,5 +1,6 @@
 $color-black: #191919;
 $color-white: #ffffff;
+$color-gray: #6b6b7f;
 $font-sans-serif: "Inter", sans-serif;
 $font-serif: "Playfair Display", serif;
 
@@ -48,7 +49,6 @@ $font-serif: "Playfair Display", serif;
 body {
   font-family: $font-sans-serif;
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 
 h1,
@@ -329,7 +329,7 @@ h3 {
     }
 
     &__body {
-      color: #6b6b7f;
+      color: $color-gray;
       font-size: 0.875rem;
       line-height: 1.25rem;
 
@@ -342,7 +342,11 @@ h3 {
 }
 
 .section-2 {
-  padding: 6.25rem 0 11rem;
+  padding: 4rem 0;
+
+  @include md-breakpoint() {
+    padding: 6.25rem 0 11rem;
+  }
 
   & > .container {
     display: flex;
@@ -380,7 +384,7 @@ h3 {
   &__text {
     &--1,
     &--2 {
-      color: #6b6b7f;
+      color: $color-gray;
       font-size: 1.125rem;
       line-height: 27px;
     }
@@ -404,5 +408,234 @@ h3 {
 .section-3 {
   padding: 7.5rem 0 9rem;
   background-color: $color-black;
-  color: white;
+  color: $color-white;
+
+  &__heading {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    @include sm-breakpoint() {
+      margin-bottom: 6rem;
+    }
+  }
+
+  &__features {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 2rem;
+
+    @include sm-breakpoint() {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 3rem;
+    }
+
+    @include lg-breakpoint() {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      row-gap: 4.5rem;
+      column-gap: 1.75rem;
+    }
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    gap: 0.875rem;
+    margin-bottom: 1.25rem;
+  }
+
+  &__circle {
+    width: 3.75rem;
+    height: 3.75rem;
+    background: linear-gradient(135deg, #e2cc94 0%, #f5b81b 100%);
+    border-radius: 50%;
+    padding: 0.75rem;
+  }
+
+  &__text {
+    &--title {
+      font-size: 1rem;
+      font-weight: 600;
+
+      @include md-breakpoint() {
+        font-size: 1.25rem;
+      }
+    }
+
+    &--description {
+      font-size: 0.875rem;
+
+      @include md-breakpoint() {
+        font-size: 1rem;
+      }
+    }
+  }
+}
+
+.testimonial {
+  padding: 8.25rem 0;
+
+  & > .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__heading {
+    text-align: center;
+
+    margin-bottom: 6.5rem;
+  }
+
+  &__card {
+    background-color: #f5f6f8;
+    flex-basis: 33.33%;
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+
+    &__wrapper {
+      display: grid;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      row-gap: 2rem;
+      position: relative;
+
+      @include md-breakpoint() {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        column-gap: 15px;
+      }
+
+      &__blur {
+        position: absolute;
+        background: linear-gradient(
+          360deg,
+          #ffffff 41.51%,
+          rgba(255, 255, 255, 0) 137.82%
+        );
+        width: 100%;
+        height: 207px;
+        bottom: 0;
+        opacity: 1;
+        visibility: visible;
+        transition: 0.5s;
+
+        &.not-active {
+          opacity: 0;
+          visibility: hidden;
+        }
+      }
+    }
+
+    &__text {
+      font-style: italic;
+      margin-bottom: 0.75rem;
+    }
+
+    &__line {
+      border: 0;
+      height: 2px;
+      width: 5.25rem;
+      background: linear-gradient(
+        to right,
+        rgba(102, 102, 102, 1),
+        rgba(102, 102, 102, 0)
+      );
+      margin-bottom: 1rem;
+    }
+
+    &__profile {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-top: auto;
+
+      &__text {
+        &--name {
+          font-size: 1rem;
+          font-weight: 600;
+          margin-bottom: 4px;
+        }
+
+        &--position {
+          color: #97989f;
+          font-size: 0.875rem;
+        }
+      }
+    }
+  }
+
+  &__button {
+    @include button-variant($color-black, $color-white);
+    border: none;
+    cursor: pointer;
+    font-family: $font-sans-serif;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 auto;
+
+    transition: 0.5s;
+  }
+}
+
+.demo {
+  margin-bottom: 10rem;
+
+  &__card {
+    padding: 2.5rem 2.5rem;
+    background: linear-gradient(96.04deg, #f2eefd 0%, #e1befc 100%);
+    border-radius: 1.5rem;
+    position: relative;
+
+    @include md-breakpoint() {
+      padding: 3.75rem 4.5rem;
+    }
+  }
+
+  &__heading {
+    margin-bottom: 2.25rem;
+  }
+
+  &__link {
+    @include button-variant($color-white, $color-black);
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 2.25rem;
+  }
+
+  &__list {
+    list-style-position: inside;
+  }
+
+  &__item {
+    color: #666666;
+
+    & > span {
+      color: $color-black;
+      font-size: 1.125rem;
+    }
+
+    &:first-of-type {
+      margin-bottom: 0.75rem;
+    }
+  }
+
+  &__image {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 0;
+
+    @include lg-breakpoint() {
+      display: block;
+    }
+  }
+}
+
+.footer {
+  & > .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 }
